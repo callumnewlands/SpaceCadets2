@@ -1,23 +1,20 @@
-/* BareBones Language:
-  Identifiers:
-   - clear
-   - decr
-   - do
-   - end
-   - incr
-   - not
-   - while
+public class Main
+{
 
-  a '#' character introduces a comment, which continues to the end of the source line.
-  Reserved words are case-insensitive.
-  Identifiers must begin with an alphabetic character, and may contain alphabetic, numeric, and underscore characters.
-   Identifiers are case-insensitive. Reserved words my not be used as identifiers.
-   */
+    public static void main(String[] args)
+    {
+        String fileName = PublicMethods.getString("Enter File Name: ");
 
-public class Main {
+        try
+        {
+            Interpreter interpreter = new Interpreter("./resources/" + PublicMethods.fixFileSuffix(fileName, "txt"));
+            interpreter.execute();
+        }
+        catch (InterpreterException e)
+        {
+            System.out.println(e.getMessage());
+        }
 
-    public static void main(String[] args) {
-
-        Interpreter interpreter = new Interpreter("<filePath>");
     }
+
 }

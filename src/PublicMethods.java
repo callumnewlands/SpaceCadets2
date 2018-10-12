@@ -27,6 +27,19 @@ class PublicMethods {
     // Overloads getString() to simulate optional request parameter
     static String getString() { return getString(""); }
 
+    /**
+     * Ensures the specified suffix is present at the end of the filepath
+     * @param suffix the suffix to ensure is on the file path e.g. (txt, java), with no .
+     * @return the filepath with the required suffix
+     */
+    static String fixFileSuffix(String filePath, String suffix)
+    {
+        if (filePath.substring(filePath.lastIndexOf('.') + 1).equals(suffix))
+            return filePath;
+
+        return filePath + '.' + suffix;
+    }
+
     static void waitForEnter()
     {
         System.out.println("\nPress [Enter] to continue...");
