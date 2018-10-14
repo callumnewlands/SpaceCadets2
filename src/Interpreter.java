@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 class Interpreter
 {
     private ArrayList<String> _sourceCode = new ArrayList<>();
-    private Map<String, Integer> _variables = new HashMap<String, Integer>();
+    private Map<String, Integer> _variables = new HashMap<>();
     private Integer _linePtr = 0;
-    private Stack<WhileLoopPtr> whileLoopPtrs = new Stack<WhileLoopPtr>();
+    private Stack<WhileLoopPtr> whileLoopPtrs = new Stack<>();
 
     private static final String COMMENT_REG_EX = "\\s*#.*";
     private static final String VARIABLE_REG_EX = "\\s*(clear|incr|decr)\\s+(\\w+)\\s*;\\s*";
@@ -20,19 +20,13 @@ class Interpreter
     private static final String BLANK_REG_EX = "\\s*";
     private static final String[] RESERVED_IDENTIFIERS = {"clear", "decr", "do", "end", "incr", "while"};
 
-    Interpreter(String filePath) throws InterpreterException
+
+
+   Interpreter(String code)
     {
-        try (BufferedReader fileReader = new BufferedReader(new FileReader(new File(filePath)));)
-        {
-            String line;
-            while ((line = fileReader.readLine()) != null)
-                _sourceCode.add(line.toLowerCase());
-        }
-        catch (IOException e)
-        {
-            System.out.println(e.getMessage());
-            throw new InterpreterException("Unable to load specified file: " + filePath, e);
-        }
+        String[] lines = code.split("\\r?\\n");
+        for (String line : lines)
+            _sourceCode.add(line);
     }
 
     void execute() throws InterpreterException
@@ -57,13 +51,12 @@ class Interpreter
             return;
 
         if (!isSyntacticallyCorrect(line))
-            throw new InterpreterException("Syntax Error in line: " + line);
+            throw new InterpreterException("Syntax Error in line " + (_linePtr + 1) + ": " + line);
 
         Pattern variablePattern = Pattern.compile(VARIABLE_REG_EX);
         Matcher variableMatcher = variablePattern.matcher(line);
         variableMatcher.find();
 
-        //System.out.println(line);
         String instruction = "";
         String variable = "";
         try
@@ -101,7 +94,7 @@ class Interpreter
         }
 
         if (isReservedIdentifier(variable))
-            throw new InterpreterException("Syntax Error: " + variable + " is a reserved keyword");
+            throw new InterpreterException("Syntax Error in line " + (_linePtr + 1) + ": " + variable + " is a reserved keyword");
 
         switch (instruction)
         {
@@ -128,7 +121,7 @@ class Interpreter
                 _linePtr = whileLoopPtrs.peek().startLine;
                 throw new EndOfLoopException();
             default:
-                throw new InterpreterException("Invalid command in line: " + line);
+                throw new InterpreterException("Invalid command in line " + (_linePtr + 1) + ": " + line);
         }
 
         //System.out.println(_variables.get("x"));
@@ -164,7 +157,7 @@ class Interpreter
 
     private void outputVariables()
     {
-        _variables.forEach((variable, value) -> {System.out.print(variable + ":" + value + ", ");});
+        _variables.forEach((variable, value) -> System.out.print(variable + ":" + value + ", "));
         System.out.println();
     }
 

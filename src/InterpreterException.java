@@ -1,4 +1,4 @@
-public class InterpreterException extends Exception
+class InterpreterException extends Exception
 {
 
     InterpreterException() { super(); }
