@@ -13,12 +13,14 @@ class Interpreter
     private Integer _linePtr = 0;
     private Stack<WhileLoopPtr> whileLoopPtrs = new Stack<>();
 
-    private static final String COMMENT_REG_EX = "\\s*#.*";
+    private static final String[] RESERVED_IDENTIFIERS = {"clear", "decr", "do", "end", "incr", "while"};
+    public static final String COMMENT_REG_EX = "\\s*#.*";
     private static final String VARIABLE_REG_EX = "\\s*(clear|incr|decr)\\s+(\\w+)\\s*;\\s*";
+    public static final String KEYWORD_REG_EX = "\\b(" + String.join("|", RESERVED_IDENTIFIERS) + ")\\b";
     private static final String WHILE_REG_EX = "\\s*(while)\\s+(\\w+)\\s+not\\s+0\\s+do\\s*;\\s*";
     private static final String END_REG_EX = "\\s*(end)\\s*;\\s*";
     private static final String BLANK_REG_EX = "\\s*";
-    private static final String[] RESERVED_IDENTIFIERS = {"clear", "decr", "do", "end", "incr", "while"};
+    public static final String SEMICOLON_REG_EX = "\\;";
 
 
 

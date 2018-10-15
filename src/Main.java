@@ -9,7 +9,7 @@ public class Main
         GUI gui = new GUI();
         gui.show();
 
-        String fileName = PublicMethods.getString("Enter File Name: ");
+        //String fileName = PublicMethods.getString("Enter File Name: ");
 
         /*String code = "";
          try (BufferedReader fileReader = new BufferedReader(new FileReader(new File("./resources/" + PublicMethods.fixFileSuffix(fileName, "txt")))))

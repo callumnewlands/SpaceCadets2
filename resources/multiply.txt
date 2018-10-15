@@ -1,10 +1,17 @@
+## Multiplies 2 numbers ##
+
+# X = 2
 clear X;
 incr X;
 incr X;
+
+# Y = 3
 clear Y;
 incr Y;
 incr Y;
 incr Y;
+
+
 clear Z;
 while X not 0 do;
    clear W;
