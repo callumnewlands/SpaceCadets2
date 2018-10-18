@@ -1,4 +1,5 @@
 ## Multiplies 2 numbers ##
+## Stores the result in Z ##
 
 # X = 2
 clear X;
@@ -10,7 +11,6 @@ clear Y;
 incr Y;
 incr Y;
 incr Y;
-
 
 clear Z;
 while X not 0 do;

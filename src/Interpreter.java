@@ -1,10 +1,14 @@
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javafx.scene.text.Text;
+
+// TODO: javadoc
+// TODO: fix StackOverflowException
 
 class Interpreter
 {
@@ -22,14 +26,18 @@ class Interpreter
     private static final String BLANK_REG_EX = "\\s*";
     public static final String SEMICOLON_REG_EX = "\\;";
 
+    private Text txtOutput;
 
-
-   Interpreter(String code)
+   Interpreter(String code, Text txtOutput)
     {
         String[] lines = code.split("\\r?\\n");
         for (String line : lines)
             _sourceCode.add(line);
+
+        this.txtOutput = txtOutput;
+        this.txtOutput.setText("Output: ");
     }
+
 
     void execute() throws InterpreterException
     {
@@ -44,7 +52,6 @@ class Interpreter
             _linePtr++;
         }
 
-
     }
 
     private void executeLine(String line) throws InterpreterException
@@ -58,6 +65,8 @@ class Interpreter
         Pattern variablePattern = Pattern.compile(VARIABLE_REG_EX);
         Matcher variableMatcher = variablePattern.matcher(line);
         variableMatcher.find();
+
+        // TODO: redo like GUI pattern matching with groups
 
         String instruction = "";
         String variable = "";
@@ -159,8 +168,18 @@ class Interpreter
 
     private void outputVariables()
     {
-        _variables.forEach((variable, value) -> System.out.print(variable + ":" + value + ", "));
-        System.out.println();
+        _variables.forEach((variable, value) ->
+        {
+            String output = variable + ":" + value + ", ";
+            if (txtOutput != null)
+                txtOutput.setText(txtOutput.getText() + output);
+            else
+                System.out.print(output);
+        });
+        if (txtOutput != null)
+            txtOutput.setText(txtOutput.getText() + "\n");
+        else
+            System.out.println();
     }
 
     private boolean isCommentOrBlank(String line)
