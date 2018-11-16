@@ -1,8 +1,0 @@
-clear X;
-incr X;
-incr X;
-# TEST COMMENT 1
-incr X;
-while X not 0 do;
-   decr X;
-end;
