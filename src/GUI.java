@@ -11,6 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+<<<<<<< HEAD
+=======
+import javafx.concurrent.Task;
+import javafx.concurrent.Service;
+
+
+>>>>>>> parent of 1246c04... Preparing to transfer repo
 
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;

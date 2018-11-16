@@ -135,6 +135,10 @@ class Interpreter
                 throw new InterpreterException("Invalid command in line " + (_linePtr + 1) + ": " + line);
         }
 
+<<<<<<< HEAD
+=======
+        //System.out.println(_variables.get("x"));
+>>>>>>> parent of 1246c04... Preparing to transfer repo
 
     }
 
