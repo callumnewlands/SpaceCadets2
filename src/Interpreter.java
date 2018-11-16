@@ -136,6 +136,10 @@ class Interpreter
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        //System.out.println(_variables.get("x"));
+>>>>>>> parent of 1246c04... Preparing to transfer repo
 =======
         //System.out.println(_variables.get("x"));
 >>>>>>> parent of 1246c04... Preparing to transfer repo

@@ -12,11 +12,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 1246c04... Preparing to transfer repo
 import javafx.concurrent.Task;
 import javafx.concurrent.Service;
 
 
+<<<<<<< HEAD
+>>>>>>> parent of 1246c04... Preparing to transfer repo
+=======
 >>>>>>> parent of 1246c04... Preparing to transfer repo
 
 import org.fxmisc.richtext.model.StyleSpans;
